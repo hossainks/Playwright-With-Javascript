@@ -1,6 +1,7 @@
 // @ts-check
 const { defineConfig, devices } = require("@playwright/test");
 const path = require("path");
+const baseUrlEnv = require("./utils/environmentbasedurls");
 
 /**
  * Read environment variables from file.
@@ -13,8 +14,8 @@ require("dotenv").config({ path: path.resolve(__dirname, ".env") });
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: "./tests",
-  /* Run tests in files in parallel */
+  //testDir: "./tests",
+  /* Run tests in files in pa  g : :rallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
@@ -29,6 +30,8 @@ module.exports = defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
+    baseURL: baseUrlEnv.staging.home, // reading the URL from
+
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
   },
@@ -40,6 +43,38 @@ module.exports = defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
+    {
+      name: "ci",
+      use: {
+        baseURL: process.env.CI
+          ? baseUrlEnv.production.app + process.env.GITHUB_REF_NAME
+          : baseUrlEnv.staging.home,
+      },
+    },
+
+    {
+      name: "all-browsers-and-tests",
+      use: {
+        baseURL: baseUrlEnv.staging.home,
+        ...devices["Desktop Chrome"],
+      },
+    },
+
+    // {
+    //   name: "all-browsers-and-tests",
+    //   use: {
+    //     baseURL: baseUrlEnv.staging.home,
+    //     ...devices["Desktop Safari"],
+    //   },
+    // },
+
+    {
+      name: "all-browsers-and-tests",
+      use: {
+        baseURL: baseUrlEnv.staging.home,
+        ...devices["Desktop Firefox"],
+      },
+    },
     /*   {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
