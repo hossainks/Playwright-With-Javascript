@@ -10,7 +10,8 @@
     "test:e2e:projects": "npx playwright test --project=all-browsers-and-tests",
     "test:e2e:ci": "CI=1 npx playwright test --projects=ci --shard",
     "test:e2e:smoke": "npx playwright test tests-examples/ --grep @smoke --headed --project=chromium",
-    "test:e2e:smoke1": "npx playwright test tests-examples/ --grep @smoke --headed --project chromium --retries=0"
+    "test:e2e:smoke1": "npx playwright test tests-examples/ --grep @smoke --headed --project chromium --retries=0",
+    "mytest": "npx playwright test mytest.spec.js --headed --project chromium --retries=0"
   },
   "keywords": [],
   "author": "",

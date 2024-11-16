@@ -5,6 +5,6 @@ module.exports = {
   },
   staging: {
     api: "",
-    home: "https://testautomationu.applitools.com/",
+    home: "https://playwright.dev/",
   },
 };
