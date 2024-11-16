@@ -1,0 +1,33 @@
+name: Playwright Tests
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: ["chromium", "firefox"]
+        node-version: [20.x"]
+
+    steps:
+      # Check out the repo
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Run Playwright tests
+      - name: Run Playwright Tests
+        run: npx playwright test  mytest.spec.js --browser ${{ matrix.browser }}

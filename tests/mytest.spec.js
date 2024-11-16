@@ -21,4 +21,6 @@ test("Second Test", async function ({ page }) {
 test("Third Test", async function ({ page }) {
   await page.getByRole("button", { name: "Node.js" }).hover();
   await page.getByText("Java").nth(0).click();
+  await page.waitForLoadState("networkidle");
+  expect(page.url()).toContain("java");
 });
