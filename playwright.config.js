@@ -14,7 +14,7 @@ require("dotenv").config({ path: path.resolve(__dirname, ".env") });
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  //testDir: "./tests",
+  testDir: "./tests",
   /* Run tests in files in pa  g : :rallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -42,7 +42,6 @@ module.exports = defineConfig({
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
     },
-
     {
       name: "ci",
       use: {
@@ -51,6 +50,14 @@ module.exports = defineConfig({
           : baseUrlEnv.staging.home,
       },
     },
+    /*     {
+      name: "ci",
+      use: {
+        baseURL: process.env.CI
+          ? baseUrlEnv.production.app + process.env.GITHUB_REF_NAME
+          : baseUrlEnv.staging.home,
+      },
+    }, */
 
     {
       name: "all-browsers-and-tests",
