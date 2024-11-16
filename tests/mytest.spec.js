@@ -18,9 +18,14 @@ test("Second Test", async function ({ page }) {
 });
 
 // Test the third test case
-test("Third Test", async function ({ page }) {
+test("Check Java page", async function ({ page }) {
   await page.getByRole("button", { name: "Node.js" }).hover();
-  await page.getByText("Java").nth(0).click();
+  await page.getByText("Java", { exact: true }).nth(0).click();
   await page.waitForLoadState("networkidle");
-  expect(page.url()).toContain("java");
+  // expect(page.url()).toContain("java");
+  await expect(page).toHaveURL("https://playwright.dev/java/");
+  await expect(page.getByAltText("Installing Playwright")).not.toBeVisible();
+  const javaDescription =
+    "Browser contexts. Playwright creates a browser context for each test. Browser context is equivalent to a brand new browser profile. This delivers full test isolation with zero overhead. Creating a new browser context only takes a handful of milliseconds.";
+  expect(page.getByText(javaDescription)).toBeVisible();
 });
