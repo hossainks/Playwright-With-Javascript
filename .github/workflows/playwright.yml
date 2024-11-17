@@ -31,3 +31,7 @@ jobs:
       # Run Playwright tests
       - name: Run Playwright Tests
         run: npx playwright test  mytest2.spec.js --project ${{ matrix.browser }}
+
+      # Run Playwright tests POM Folder
+      - name: Run Playwright Tests
+        run: npx playwright test  mytestpom.spec.js --project ${{ matrix.browser }}
