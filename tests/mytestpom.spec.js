@@ -31,7 +31,7 @@ test.describe("Home Page", () => {
   });
 
   // Test the third test case
-  test("Check Java page", async function ({ page }) {
+  test("Check Java page", { tag: "@smoke" }, async function ({ page }) {
     await hoverElement(page, homePage.nodeJsButton);
     await clickElement(page, homePage.javeText);
     await page.waitForLoadState("networkidle");
