@@ -12,7 +12,8 @@
     "test:e2e:smoke": "npx playwright test tests-examples/ --grep @smoke --headed --project=chromium",
     "test:e2e:smoke1": "npx playwright test tests-examples/ --grep @smoke --headed --project chromium --retries=0",
     "mytest": "npx playwright test mytest.spec.js --headed --project chromium --retries=0",
-    "mytest2": "npx playwright test mytest2.spec.js --headed --project chromium --retries=0"
+    "mytest2": "npx playwright test mytest2.spec.js --headed --project chromium --retries=0",
+    "mytestpom": "npx playwright test mytestpom.spec.js --headed --project chromium --retries=0"
   },
   "keywords": [],
   "author": "",
