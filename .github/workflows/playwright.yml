@@ -30,4 +30,4 @@ jobs:
 
       # Run Playwright tests
       - name: Run Playwright Tests
-        run: npx playwright test  mytest.spec.js --project ${{ matrix.browser }}
+        run: npx playwright test  mytest2.spec.js --project ${{ matrix.browser }}

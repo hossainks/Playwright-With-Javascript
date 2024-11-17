@@ -5,20 +5,20 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
-test("First Test", async function ({ page }) {
+test("Basic test", async function ({ page }) {
   await expect(page).toHaveTitle(
     /Fast and reliable end-to-end testing for modern web apps | Playwright/
   );
 });
 
 // Test the second test case
-test("Second Test", async function ({ page }) {
+test("Basic test2", async function ({ page }) {
   await page.getByRole("link", { name: "Get started" }).click();
   await expect(page).toHaveTitle(/Installation | Playwright/);
 });
 
 // Test the third test case
-test("Check Java page", async function ({ page }) {
+test("Basic test3", async function ({ page }) {
   await page.getByRole("button", { name: "Node.js" }).hover();
   await page.getByText("Java", { exact: true }).nth(0).click();
   await page.waitForLoadState("networkidle");
